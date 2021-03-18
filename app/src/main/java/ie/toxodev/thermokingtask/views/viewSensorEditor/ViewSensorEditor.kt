@@ -52,6 +52,7 @@ class ViewSensorEditor : Fragment() {
             if (it != null && sensorId != null) {
                 vModel.lvdVehicleInfo.value = it
                 this.vModel.setSensorDetail(sensorId!!)
+
             } else {
                 TODO("Not Implemented yet")
             }

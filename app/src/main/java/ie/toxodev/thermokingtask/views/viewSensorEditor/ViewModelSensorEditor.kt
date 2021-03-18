@@ -16,6 +16,8 @@ import javax.inject.Inject
 class ViewModelSensorEditor @Inject constructor(private val repository: RoomRepository) :
     ViewModel() {
 
+    private var sensorIndex: Int? = null
+
     val lvdSensorDetail: MutableLiveData<SensorDetail> = MutableLiveData()
     val lvdVehicleInfo: MutableLiveData<FixedVehicleData> = MutableLiveData()
 
@@ -36,8 +38,9 @@ class ViewModelSensorEditor @Inject constructor(private val repository: RoomRepo
     }
 
     fun setSensorDetail(serialNumber: String) {
-        lvdVehicleInfo.value?.sensors?.forEach { sensorDetail ->
+        lvdVehicleInfo.value?.sensors?.forEachIndexed { index, sensorDetail ->
             if (sensorDetail.serialNumber == serialNumber) {
+                sensorIndex = index
                 lvdSensorDetail.value = sensorDetail
                 return
             }
