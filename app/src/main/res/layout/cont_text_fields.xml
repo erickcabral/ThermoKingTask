@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="binderModel"
+            type="ie.toxodev.thermokingtask.supportClasses.binderModels.ContTextFieldBinderModel" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/contTextFields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:padding="2dp"
+        android:tag="@{binderModel.label}">
+
+        <TextView
+            android:id="@+id/tvLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:tag="@{binderModel.label}"
+            android:text="@{binderModel.label}"
+            android:textSize="10sp"
+            tools:text="Label" />
+
+        <TextView
+            android:id="@+id/tvInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bkg_rectangular"
+            android:tag="@{binderModel.label}"
+            android:text="@{binderModel.info}"
+            android:textSize="12sp"
+            tools:text="Field Info" />
+
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="contCustomer"
+            type="ie.toxodev.thermokingtask.supportClasses.binderModels.ContTextFieldBinderModel" />
+
+        <variable
+            name="contMobileNumber"
+            type="ie.toxodev.thermokingtask.supportClasses.binderModels.ContTextFieldBinderModel" />
+
+        <variable
+            name="contVehicleName"
+            type="ie.toxodev.thermokingtask.supportClasses.binderModels.ContTextFieldBinderModel" />
+
+        <variable
+            name="contVehicleId"
+            type="ie.toxodev.thermokingtask.supportClasses.binderModels.ContTextFieldBinderModel" />
+
+        <variable
+            name="contReefer"
+            type="ie.toxodev.thermokingtask.supportClasses.binderModels.ContTextFieldBinderModel" />
+
+        <variable
+            name="adapterModel"
+            type="ie.toxodev.thermokingtask.supportClasses.binderModels.SensorsAdapterModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutVehicleInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <include
+            android:id="@+id/inclCustomer"
+            layout="@layout/cont_text_fields"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:binderModel="@{contCustomer}" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inclCustomer">
+
+            <include
+                android:id="@+id/inclMobileNumb"
+                layout="@layout/cont_text_fields"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                bind:binderModel="@{contMobileNumber}" />
+
+            <include
+                android:id="@+id/inclReefer"
+                layout="@layout/cont_text_fields"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                bind:binderModel="@{contReefer}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <include
+                android:id="@+id/inclVehicleId"
+                layout="@layout/cont_text_fields"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                bind:binderModel="@{contVehicleId}" />
+
+            <include
+                android:id="@+id/inclVehicleName"
+                layout="@layout/cont_text_fields"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                bind:binderModel="@{contVehicleName}" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Sensors:"
+            android:textColor="@color/design_default_color_primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerSensors"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/bkg_rectangular"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            bind:recycler_sensors="@{adapterModel}"
+            tools:itemCount="6"
+            tools:listitem="@layout/card_sensors" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

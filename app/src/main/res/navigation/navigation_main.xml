@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/viewFront">
+
+    <fragment
+        android:id="@+id/viewFront"
+        android:name="ie.toxodev.thermokingtask.views.front.ViewFront"
+        android:label="Thermo King Task - Erick Cabral"
+        tools:layout="@layout/view_front">
+        <action
+            android:id="@+id/toVehicleInfo"
+            app:destination="@id/viewVehicleInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewVehicleInfo"
+        android:name="ie.toxodev.thermokingtask.views.vehicleInfo.ViewVehicleInfo"
+        android:label="Vehicle Info"
+        tools:layout="@layout/view_vehicle_info">
+        <argument
+            android:name="VEHICLE_ID"
+            android:defaultValue="null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/toSensorDetails"
+            app:destination="@id/viewSensorEditor" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/view_sensor_editor"
+        android:id="@+id/viewSensorEditor"
+        android:name="ie.toxodev.thermokingtask.views.viewSensorEditor.ViewSensorEditor"
+        android:label="Sensor Editor" >
+        <argument
+            android:name="VEHICLE_ID"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+        <argument
+            android:name="SENSOR_ID"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+    </fragment>
+</navigation>
