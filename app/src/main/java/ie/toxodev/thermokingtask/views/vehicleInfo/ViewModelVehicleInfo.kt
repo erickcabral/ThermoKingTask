@@ -63,5 +63,6 @@ class ViewModelVehicleInfo @Inject constructor(
 
     //================= GETTER ===================== //
     fun getVehicleInfoResponse() = this.repository.lvdVehicleInfo
-    fun getVehicleUpdateResponse() = this.repository.lvdVehicleInsertResponse
+    fun getVehicleUpdateResponse() = this.repository.lvdVehicleUpdateResponse
+
 }

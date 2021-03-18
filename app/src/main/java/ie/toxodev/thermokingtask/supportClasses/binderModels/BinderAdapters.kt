@@ -69,3 +69,12 @@ fun spinnerLoader(inputLayout: TextInputLayout, sensorType: Int?) {
         }
     }
 }
+
+@BindingAdapter("bind:sensor_type")
+fun sensorTypeSelector(inputLayout: TextInputLayout, sensorType: Int?) {
+    if (sensorType != null && sensorType != 0) {
+        SensorTypeSelector.values()[(sensorType - 1)].name.run {
+            inputLayout.editText?.setText(this)
+        }
+    }
+}

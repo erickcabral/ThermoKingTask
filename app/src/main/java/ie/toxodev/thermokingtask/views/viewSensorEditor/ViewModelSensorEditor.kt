@@ -16,7 +16,7 @@ import javax.inject.Inject
 class ViewModelSensorEditor @Inject constructor(private val repository: RoomRepository) :
     ViewModel() {
 
-    private var sensorIndex: Int? = null
+    var sensorIndex: Int? = null
 
     val lvdSensorDetail: MutableLiveData<SensorDetail> = MutableLiveData()
     val lvdVehicleInfo: MutableLiveData<FixedVehicleData> = MutableLiveData()
@@ -47,5 +47,18 @@ class ViewModelSensorEditor @Inject constructor(private val repository: RoomRepo
         }
     }
 
+    fun updateSensor(sensorEdited: SensorDetail, indexEdited: Int) {
+        this.lvdVehicleInfo.value?.sensors?.run {
+            this.removeAt(indexEdited)
+            this.add(indexEdited, sensorEdited)
+        }
+        this.lvdVehicleInfo.value?.run {
+            repository.updateVehicleInfo(this)
+        }
+    }
+    // ===================== GETTERS ==================//
+
     fun getVehicleInfoResponse() = repository.lvdVehicleInfo
+    fun getVehicleUpdateResponse() = repository.lvdVehicleUpdateResponse
+
 }

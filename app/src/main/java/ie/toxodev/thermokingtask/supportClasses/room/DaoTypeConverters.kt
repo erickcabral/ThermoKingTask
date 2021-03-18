@@ -51,8 +51,8 @@ open class DaoTypeConverters {
             this.forEach { model ->
                 model as LinkedTreeMap<String, Any>
                 SensorDetail().apply {
-                    macAddress = model["serialNumber"] as String //SERIAL NUMBER AND MAC ATTRIBUTES
-                    serialNumber = model["macAddress"] as String // ARE SWITCHED IN THE ORIGINAL JSON DATA
+                    macAddress = model["macAddress"] as String //SERIAL NUMBER AND MAC ATTRIBUTES
+                    serialNumber = model["serialNumber"] as String // ARE SWITCHED IN THE ORIGINAL JSON DATA
                     sensorName = model["sensorName"] as String
                     sensorZone = (model["sensorZone"] as Double).toInt()
                     sensorType = (model["sensorType"] as Double).toInt()

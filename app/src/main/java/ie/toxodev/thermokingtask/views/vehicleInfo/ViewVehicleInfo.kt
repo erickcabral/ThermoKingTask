@@ -17,6 +17,7 @@ import ie.toxodev.thermokingtask.databinding.ViewVehicleInfoBinding
 import ie.toxodev.thermokingtask.supportClasses.OutputManager
 import ie.toxodev.thermokingtask.supportClasses.binderModels.ContTextFieldBinderModel
 import ie.toxodev.thermokingtask.supportClasses.binderModels.SensorsAdapterModel
+import ie.toxodev.thermokingtask.supportClasses.vehicleDataModel.SensorDetail
 import ie.toxodev.thermokingtask.supportClasses.vehicleDataModel.VehicleDetail
 
 @AndroidEntryPoint
@@ -125,7 +126,9 @@ class ViewVehicleInfo : Fragment(), SensorsAdapterModel.ISensorAdapterClickListe
     }
 
     override fun onCardClicked(view: View) {
-        TODO("Not yet implemented")
+        (view.tag as? SensorDetail)?.let {
+            OutputManager.sensorDetailsDialog(requireContext(), it)
+        }
     }
 
     override fun onDeleteIconClicked(view: View) {

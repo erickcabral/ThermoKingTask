@@ -18,6 +18,7 @@ class RoomRepository @Inject constructor(
 
     val lvdVehicleInfo: MutableLiveData<FixedVehicleData> = MutableLiveData()
     val lvdVehicleInsertResponse: MutableLiveData<Boolean> = MutableLiveData()
+    val lvdVehicleUpdateResponse: MutableLiveData<Boolean> = MutableLiveData()
     val lvdSavedVehicles: MutableLiveData<List<VehicleDetail>> = MutableLiveData()
 
     fun setupRepository(scope: CoroutineScope, dispatcher: CoroutineDispatcher) {
@@ -48,18 +49,18 @@ class RoomRepository @Inject constructor(
     }
 
     fun fetchVehicleInfo(vehicleId: String) {
-       this.job?.launch {
-           database.getDao().fetchVehicleInfo(vehicleId.toLong()).run {
-               lvdVehicleInfo.postValue(this)
-           }
-       }
+        this.job?.launch {
+            database.getDao().fetchVehicleInfo(vehicleId.toLong()).run {
+                lvdVehicleInfo.postValue(this)
+            }
+        }
     }
 
     fun updateVehicleInfo(vehicleData: FixedVehicleData) {
         this.job?.launch {
             database.getDao().updateVehicleInfo(vehicleData).run {
                 val success = this == 1
-                lvdVehicleInsertResponse.postValue(success)
+                lvdVehicleUpdateResponse.postValue(success)
             }
         }
     }

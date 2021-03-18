@@ -16,4 +16,5 @@
     <string name="hint_serial_number">KOPSDOVM232</string>
     <string name="txt_cancel">Cancel</string>
     <string name="txt_save">Save</string>
+    <string name="dialog_sensor_details">Sensor Details</string>
 </resources>
