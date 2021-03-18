@@ -43,8 +43,8 @@ class ViewSensorEditor : Fragment(), View.OnClickListener {
             this.inpTextArray = listOf(
                 binder.inpTxtSensorName,
                 binder.inpTxtSensorType,
-                binder.inpTxtSensorMAC,
-                binder.inpTxtSensorNum,
+                binder.inpTxtSensorMAC,  //SERIAL NUMBER AND MAC ARE SWAPPED IN THE ORIGINAL JSON
+                binder.inpTxtSensorNum,  //SERIAL NUMBER AND MAC ARE SWAPPED IN THE ORIGINAL JSON
                 binder.inpTxtSensorZone,
                 binder.inpTxtSensorLocation
             )
@@ -75,24 +75,22 @@ class ViewSensorEditor : Fragment(), View.OnClickListener {
             if (it != null && sensorId != null) {
                 vModel.lvdVehicleInfo.value = it
                 this.vModel.setSensorDetail(sensorId!!)
-
             } else {
-                TODO("Not Implemented yet")
+                OutputManager.logError(TAG, "VEHICLE INFO RESPONSE INVALID")
             }
         })
 
-        this.vModel.getVehicleUpdateResponse().observe(viewLifecycleOwner, Observer { success->
+        this.vModel.getVehicleUpdateResponse().observe(viewLifecycleOwner, Observer { success ->
             if (success) {
                 OutputManager.displayPositiveOnlyDialog(
-                    requireContext(), "Sensor Updated",
-                    "Sensor updated successfully"
+                    requireContext(), getString(R.string.dialod_sensor_updated),
+                    getString(R.string.dialog_sensor_update_message)
                 )
                 findNavController().popBackStack()
             } else {
                 OutputManager.displayPositiveOnlyDialog(
-                    requireContext(), "Failed",
-                    "Something went wrong while updating the sensor details." +
-                            "Please try again"
+                    requireContext(), getString(R.string.dialog_failed_title),
+                    getString(R.string.dialog_sensor_update_failed_message)
                 )
             }
         })
@@ -124,8 +122,10 @@ class ViewSensorEditor : Fragment(), View.OnClickListener {
                         when (index) {
                             0 -> this.sensorName = editText.text.trim().toString()
                             1 -> this.sensorType = getSensorTypeNumber(editText.text.toString())
-                            2 -> this.macAddress = editText.text.trim().toString()
-                            3 -> this.serialNumber = editText.text.trim().toString()
+                            2 -> this.serialNumber = editText.text.trim()
+                                .toString() //SERIAL NUMBER AND MAC ARE SWAPPED IN THE ORIGINAL JSON
+                            3 -> this.macAddress = editText.text.trim()
+                                .toString()  //SERIAL NUMBER AND MAC ARE SWAPPED IN THE ORIGINAL JSON
                             4 -> this.sensorZone = editText.text.trim().toString().toInt()
                             5 -> this.sensorLocation = editText.text.trim().toString().toInt()
                         }

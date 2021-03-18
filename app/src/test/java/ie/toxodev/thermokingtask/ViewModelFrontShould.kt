@@ -4,8 +4,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import ie.toxodev.thermokingtask.supportClasses.repository.RoomRepository
-import ie.toxodev.thermokingtask.supportClasses.vehicleDataModel.FixedVehicleData
-import ie.toxodev.thermokingtask.supportClasses.vehicleDataModel.VehicleDataResponse
+import ie.toxodev.thermokingtask.supportClasses.vehicleDataModel.*
 import ie.toxodev.thermokingtask.testUtils.BaseUnitTest
 import ie.toxodev.thermokingtask.views.front.ViewModelFront
 import kotlinx.coroutines.CoroutineDispatcher
@@ -33,11 +32,15 @@ class ViewModelFrontShould : BaseUnitTest() {
 
     @Test
     fun save_vehicle_data() {
-        val vehicleDataResponse = VehicleDataResponse()
+        val vehicleDataResponse = VehicleDataResponse().apply {
+            this.vehicleDetails = mutableListOf(VehicleDetail("1232"), VehicleDetail("123123"))
+            this.requestDetails = listOf(RequestDetail())
+            this.userDetails = listOf(UserDetail())
+        }
         val fixedVehicleData = FixedVehicleData().apply {
             this.setData(vehicleDataResponse)
         }
-        this.viewModel.saveVehicleData(vehicleDataResponse)
+        this.viewModel.saveVehicleData(fixedVehicleData)
         verify(mckdRepository, times(1)).saveVehicleData(fixedVehicleData)
     }
 
@@ -50,12 +53,13 @@ class ViewModelFrontShould : BaseUnitTest() {
 
     // ====================== //
     @Test
-    fun retrieve_saved_vehicle_data_from_room_database(){
+    fun retrieve_saved_vehicle_data_from_room_database() {
         this.viewModel.retrieveSavedVehicles()
         verify(mckdRepository, times(1)).fetchSavedVehicles()
     }
+
     @Test
-    fun get_saved_vehicles_result(){
+    fun get_saved_vehicles_result() {
         this.viewModel.getSavedVehicles()
         verify(mckdRepository, times(1)).lvdSavedVehicles
     }

@@ -14,7 +14,9 @@ import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import ie.toxodev.thermokingtask.R
 import ie.toxodev.thermokingtask.databinding.ViewFrontBinding
+import ie.toxodev.thermokingtask.supportClasses.OutputManager
 import ie.toxodev.thermokingtask.supportClasses.binderModels.VehicleInfoAdapterBinderModel
+import ie.toxodev.thermokingtask.supportClasses.vehicleDataModel.FixedVehicleData
 import ie.toxodev.thermokingtask.supportClasses.vehicleDataModel.VehicleDataResponse
 import java.io.FileNotFoundException
 import java.io.InputStreamReader
@@ -51,19 +53,23 @@ class ViewFront : Fragment(), View.OnClickListener,
             if (success) {
                 this.vModel.retrieveSavedVehicles()
             } else {
-                Log.w(TAG, "FAILED")
+                OutputManager.logError(TAG, "SAVING FAILED")
             }
         })
 
         this.vModel.getSavedVehicles().observe(viewLifecycleOwner, Observer { list ->
             if (list != null) {
                 if (list.isNotEmpty()) {
+                    this.vBinder.tvSavedVehicles.visibility = View.VISIBLE
+                    this.vBinder.bntLoadData.text = getString(R.string.btn_reload_vehicle_data)
                     vModel.lvdAdapterBinderModel.value = VehicleInfoAdapterBinderModel(list, this)
                 } else {
-
+                    this.vBinder.tvSavedVehicles.visibility = View.GONE
+                    this.vBinder.bntLoadData.text = getString(R.string.btn_load_vehicle_data)
+                    OutputManager.logError(TAG, "SAVED VEHICLES LIST IS EMPTY")
                 }
             } else {
-
+                OutputManager.logError(TAG, "FETCHING SAVED VEHICLES FAILED")
             }
         })
 
@@ -82,9 +88,14 @@ class ViewFront : Fragment(), View.OnClickListener,
     private fun getData() {
         try {
             requireContext().assets.open("vehicleData").run {
-                Gson().fromJson(InputStreamReader(this), VehicleDataResponse::class.java).run {
-                    vModel.saveVehicleData(this)
-                }
+                Gson().fromJson(InputStreamReader(this), VehicleDataResponse::class.java)
+                    .also { vehicleData ->
+                        FixedVehicleData().apply {
+                            this.setData(vehicleData)
+                        }.also { fixedData ->
+                            vModel.saveVehicleData(fixedData)
+                        }
+                    }
             }
         } catch (e: FileNotFoundException) {
             Log.e(TAG, "FILE NOT FOUND")

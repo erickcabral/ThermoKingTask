@@ -17,4 +17,10 @@
     <string name="txt_cancel">Cancel</string>
     <string name="txt_save">Save</string>
     <string name="dialog_sensor_details">Sensor Details</string>
+    <string name="dialod_sensor_updated">Sensor Updated</string>
+    <string name="dialog_sensor_update_message">Sensor updated successfully</string>
+    <string name="dialog_failed_title">Failed</string>
+    <string name="dialog_sensor_update_failed_message">Something went wrong while updating the sensor details."\n"Please try again.</string>
+    <string name="btn_load_vehicle_data">Load vehicle data</string>
+    <string name="btn_reload_vehicle_data">Reload Vehicle Data</string>
 </resources>

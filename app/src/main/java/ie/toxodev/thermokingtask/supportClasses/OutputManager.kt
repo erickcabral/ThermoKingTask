@@ -2,6 +2,7 @@ package ie.toxodev.thermokingtask.supportClasses
 
 import android.content.Context
 import android.content.DialogInterface
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -12,6 +13,12 @@ import ie.toxodev.thermokingtask.databinding.DialogSensorInfoBinding
 import ie.toxodev.thermokingtask.supportClasses.vehicleDataModel.SensorDetail
 
 object OutputManager {
+
+    private var logEnabled: Boolean = true
+
+    fun disableLogForTests(boolean: Boolean) {
+        logEnabled = boolean
+    }
 
     private var dialog: AlertDialog? = null
 
@@ -68,5 +75,11 @@ object OutputManager {
             .setView(view)
             .create()
             .show()
+    }
+
+    fun logError(tag: String, message: String) {
+        if (logEnabled) {
+            Log.e(tag, message)
+        }
     }
 }

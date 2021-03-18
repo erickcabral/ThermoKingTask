@@ -10,13 +10,13 @@ import kotlinx.serialization.Serializable
 class RequestDetail(
     @SerialName("messageType")
     @ColumnInfo(name = "message_type")
-    var messageType: Int,
+    var messageType: Int =0,
 
     @SerialName("mobileAppID")
     @ColumnInfo(name = "mobile_app_id")
-    var mobileAppID: Int,
+    var mobileAppID: Int =0,
 
     @SerialName("vID")
     @ColumnInfo(name = "v_id")
-    var vID: String,
+    var vID: String ="",
 )

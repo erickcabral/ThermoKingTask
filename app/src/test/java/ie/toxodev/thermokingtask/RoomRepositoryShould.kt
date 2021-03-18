@@ -84,7 +84,7 @@ class RoomRepositoryShould : BaseUnitTest() {
         repository.updateVehicleInfo(vehicleData)
         verify(mckdDao, times(1)).updateVehicleInfo(vehicleData)
 
-        repository.lvdVehicleInsertResponse.getValueForTest().run {
+        repository.lvdVehicleUpdateResponse.getValueForTest().run {
             assertNotNull(this)
             assertTrue(this!!)
         }

@@ -21,7 +21,4 @@ class VehicleDataResponse(
     @ColumnInfo(name = "vehicle_details")
     var vehicleDetails: MutableList<VehicleDetail> = mutableListOf()
 
-) {
-//    @PrimaryKey(autoGenerate = true)
-//    var id: Int = 0
-}
+)

@@ -10,5 +10,5 @@ import kotlinx.serialization.Serializable
 class UserDetail(
     @SerialName("userID")
     @ColumnInfo(name = "user_id")
-    var userID: Int
+    var userID: Int = 0
 )

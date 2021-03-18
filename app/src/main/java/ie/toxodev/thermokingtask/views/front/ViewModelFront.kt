@@ -7,7 +7,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import ie.toxodev.thermokingtask.supportClasses.binderModels.VehicleInfoAdapterBinderModel
 import ie.toxodev.thermokingtask.supportClasses.repository.RoomRepository
 import ie.toxodev.thermokingtask.supportClasses.vehicleDataModel.FixedVehicleData
-import ie.toxodev.thermokingtask.supportClasses.vehicleDataModel.VehicleDataResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,10 +31,7 @@ class ViewModelFront @Inject constructor(
         this.repository.setupRepository(scope, dispatcher)
     }
 
-    fun saveVehicleData(vehicleDataResponse: VehicleDataResponse) {
-        val fixedVehicleData = FixedVehicleData().apply {
-            setData(vehicleDataResponse)
-        }
+    fun saveVehicleData(fixedVehicleData: FixedVehicleData) {
         this.repository.saveVehicleData(fixedVehicleData)
     }
 

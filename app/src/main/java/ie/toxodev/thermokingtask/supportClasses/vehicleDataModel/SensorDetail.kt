@@ -31,11 +31,11 @@ class SensorDetail(
     @ColumnInfo(name = "sensor_zone")
     var sensorZone: Int = 0
 ) {
-    init {
-        /********* MAC and SERIAL attributes are swapped in the original JSON ********/
-        val mac = this.serialNumber // The MAC NUM attr is the SERIAL ATTR in Original JSON
-        val serial = this.macAddress // The SERIAL NUM attr is the MAC ATTR in Original JSON
-        this.macAddress = mac
-        this.serialNumber = serial
-    }
+//    init {
+//        /********* MAC and SERIAL attributes are swapped in the original JSON ********/
+//        val mac = this.serialNumber // The MAC NUM attr is the SERIAL ATTR in Original JSON
+//        val serial = this.macAddress // The SERIAL NUM attr is the MAC ATTR in Original JSON
+//        this.macAddress = mac
+//        this.serialNumber = serial
+//    }
 }

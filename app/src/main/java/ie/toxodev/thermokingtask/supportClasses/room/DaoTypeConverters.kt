@@ -14,30 +14,30 @@ open class DaoTypeConverters {
 
     //================= TrainingModelList Converter ================= //
     @TypeConverter
-    fun fromListOfTrainingModel(list: List<VehicleDetail>): String {
+    fun vehicleDetailsList(list: List<VehicleDetail>): String {
         return gson.toJson(list)
     }
 
     @TypeConverter
-    fun toListOfTrainingModel(jListString: String): List<VehicleDetail> {
-        val listOfTrainingSets = gson.fromJson(
+    fun jsonToVehicleDetailList(jListString: String): List<VehicleDetail> {
+        val list = gson.fromJson(
             jListString,
             List::class.java
         ) as List<VehicleDetail>
 
-        return listOfTrainingSets
+        return list
     }
 
     // ====================== SENSOR DETAILS ===================== //
-    @TypeConverter
-    fun sensorDetails(sensorDetail: SensorDetail): String {
-        return gson.toJson(sensorDetail, SensorDetail::class.java)
-    }
-
-    @TypeConverter
-    fun jsonSensorDetail(jListString: String): SensorDetail {
-        return gson.fromJson(jListString, SensorDetail::class.java)
-    }
+//    @TypeConverter
+//    fun sensorDetails(sensorDetail: SensorDetail): String {
+//        return gson.toJson(sensorDetail)
+//    }
+//
+//    @TypeConverter
+//    fun jsonSensorDetail(jListString: String): SensorDetail {
+//        return gson.fromJson(jListString, SensorDetail::class.java)
+//    }
 
     @TypeConverter
     fun fromSensorListToJason(list: List<SensorDetail>): String {
