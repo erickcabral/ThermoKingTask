@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Thermo King Task"
-                android:textColor="@color/design_default_color_primary"
+                android:textColor="@color/brand_secondary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="by"
-                android:textColor="@color/design_default_color_primary"
+                android:textColor="@color/brand_secondary"
                 android:textSize="18sp" />
 
             <TextView
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Erick Cabral"
-                android:textColor="@color/design_default_color_primary"
+                android:textColor="@color/brand_secondary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -77,12 +77,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:text="Saved Vehicles:"
-            android:textColor="@color/design_default_color_primary"
+            android:textColor="@color/brand_secondary"
             android:textSize="18sp"
             android:visibility="gone"
-            tools:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/recyclerVehicleDetail"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerVehicleDetail"

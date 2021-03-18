@@ -29,7 +29,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/dialog_sensor_details"
-            android:textColor="@color/design_default_color_primary"
+            android:textColor="@color/brand_secondary"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/viewFront"
         android:name="ie.toxodev.thermokingtask.views.front.ViewFront"
-        android:label="Thermo King Task - Erick Cabral"
+        android:label="Saved Vehicles"
         tools:layout="@layout/view_front">
         <action
             android:id="@+id/toVehicleInfo"
